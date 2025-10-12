@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Passero_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const passero = Passero_One({
+  variable: "--font-passero",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -20,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${passero.variable} antialiased`}>
         <div className="min-h-screen w-full bg-black relative">
           {/* Cosmic Nebula */}
           <div
