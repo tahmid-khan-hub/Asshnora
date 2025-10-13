@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${passero.variable} antialiased`}>
+      <body className={`${inter.variable} ${passero.variable} antialiased inter`}>
         <div className="min-h-screen w-full bg-[#f5f5dc] relative">
           {/*  Warm Beige Texture  */}
           <div

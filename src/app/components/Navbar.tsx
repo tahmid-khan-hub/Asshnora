@@ -70,19 +70,19 @@ export default function Navbar() {
         {/* Left side */}
         <Link
           href="/"
-          className="text-xl -ml-1 md:-ml-0.5 lg:-ml-0 font-bold bg-gradient-to-r from-blue-700 via-blue-600 to-blue-300 bg-clip-text text-transparent"
+          className="font-passero text-xl -ml-1 md:-ml-0.5 lg:-ml-0 font-bold text-black"
         >
           Asshnora
         </Link>
 
         {/* Right side */}
         <div className="navbar-end">
-          <ul className="hidden lg:flex gap-5">{links}</ul>
+          <ul className="hidden lg:flex gap-5 text-black">{links}</ul>
 
-          <button className="btn hidden lg:block">Login</button>
+          <button className="btn hidden lg:block ml-3">Login</button>
 
           {/* Mobile menu */}
-          <div className="lg:hidden relative -mr-1" ref={menuRef}>
+          <div className="lg:hidden relative -mr-1 " ref={menuRef}>
             {/* Hamburger Icon */}
             <label
               tabIndex={0}
@@ -91,7 +91,7 @@ export default function Navbar() {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-white"
+                className="h-6 w-6 text-black"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -110,7 +110,7 @@ export default function Navbar() {
               <>
                 <ul
                   tabIndex={0}
-                  className="absolute right-0 mt-3 w-60 p-4 rounded-2xl shadow-lg bg-[#1c222a] flex flex-col gap-4 z-50"
+                  className="absolute right-0 mt-3 w-60 p-4 rounded-2xl shadow-lg bg-[#333538] flex flex-col gap-4 z-50"
                 >
                   {Menulinks}
                 </ul>
