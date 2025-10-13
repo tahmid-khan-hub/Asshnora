@@ -1,7 +1,9 @@
+import Features from "./Features/Features";
+
 export default function Home() {
   return (
-    <div className="text-white">
-      home
+    <div className="text-black ">
+      <Features></Features>
     </div>
   );
 }
