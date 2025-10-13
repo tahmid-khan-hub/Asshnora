@@ -2,7 +2,9 @@ import React from "react";
 
 const Features = () => {
   return (
-    <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto gap-6">
+    <div>
+        <h1 className="text-center font-bold text-3xl mb-8">Features</h1>
+        <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto gap-6">
       {/* Feature 1: To-Do / Tasks */}
       <div className="flex flex-col items-center bg-white shadow-md rounded-lg p-6 flex-1 justify-between">
         <div className="text-4xl mb-4">📝</div>
@@ -35,7 +37,7 @@ const Features = () => {
           Connect & Start →
         </button>
       </div>
-    </div>
+    </div></div>
   );
 };
 
