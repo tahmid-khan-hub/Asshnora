@@ -1,4 +1,6 @@
 import React from "react";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 const Features = () => {
   return (
@@ -7,7 +9,7 @@ const Features = () => {
     <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto gap-6">
       {/* Feature 1: To-Do / Tasks */}
       <div className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between">
-        <div className="text-4xl mb-4">📝</div>
+        <div className="text-4xl mb-4"><IoDocumentTextOutline size={50}/></div>
         <h3 className="text-xl font-semibold mb-2">
           Smart To-Do & Task Manager
         </h3>
@@ -23,7 +25,7 @@ const Features = () => {
 
       {/* Feature 2: Upcoming / Scheduler */}
       <div className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between">
-        <div className="text-4xl mb-4">📅</div>
+        <div className="text-4xl mb-4"><FaRegCalendarAlt size={50} /></div>
         <h3 className="text-xl font-semibold mb-2">
           AI-Powered Upcoming Scheduler
         </h3>
