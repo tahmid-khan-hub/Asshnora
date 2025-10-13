@@ -3,16 +3,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
-  const [activeHash, setActiveHash] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const updateHash = () => setActiveHash(window.location.hash);
-    updateHash();
-    window.addEventListener("hashchange", updateHash);
-    return () => window.removeEventListener("hashchange", updateHash);
-  }, []);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -110,7 +102,9 @@ export default function Navbar() {
               <>
                 <ul
                   tabIndex={0}
-                  className="absolute right-0 mt-3 w-60 p-4 rounded-2xl shadow-lg bg-[#333538] flex flex-col gap-4 z-50"
+                  className="absolute right-0 mt-3 w-60 p-4 rounded-2xl shadow-lg
+                 bg-white/30 backdrop-blur-xl border border-white/20
+                  flex flex-col gap-4 z-50 text-black"
                 >
                   {Menulinks}
                 </ul>
