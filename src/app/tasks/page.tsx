@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { CiBookmarkPlus } from "react-icons/ci";
@@ -10,35 +11,37 @@ const TasksPage = () => {
       step: 1,
       title: "Add a Task",
       desc: "Click 'Add Task' to create a new to-do item.",
-      icon: <CiBookmarkPlus size={40} />
+      icon: <CiBookmarkPlus size={40} />,
     },
     {
       step: 2,
       title: "Attach Files",
       desc: "Upload photos, PDFs or notes for better context.",
-      icon: <IoMdAttach size={40} />
+      icon: <IoMdAttach size={40} />,
     },
     {
       step: 3,
       title: "Ask AI",
       desc: "Let AI organize, prioritize or suggest next actions.",
-      icon: <AiOutlineMessage size={40} />
+      icon: <AiOutlineMessage size={40} />,
     },
     {
       step: 4,
       title: "Track Progress",
       desc: "Mark tasks as done and watch your progress grow.",
-      icon: <FaRegCircleCheck size={40} />
+      icon: <FaRegCircleCheck size={40} />,
     },
   ];
   return (
     <div>
+      {/* How to use it */}
       <section className="max-w-[1350px] mx-auto px-4 md:px-3 mb-16 text-center">
         <h2 className="text-3xl font-bold mb-3 mt-11 text-black">
           How to Use Smart Task Manager
         </h2>
         <p className="text-gray-600 mb-16">
-          Follow these simple steps to get started with your AI-powered smart task manager
+          Follow these simple steps to get started with your AI-powered smart
+          task manager
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -56,6 +59,12 @@ const TasksPage = () => {
             </div>
           ))}
         </div>
+
+        {/* Task Manager */}
+        <Link className="btn" href={``}>
+        task
+        </Link>
+
       </section>
     </div>
   );
