@@ -29,8 +29,8 @@ export default function Navbar() {
         </Link>
       </li>
       <li>
-        <Link href={"/schedule"} className={`font-semibold`}>
-          Schedule
+        <Link href={"/scheduler"} className={`font-semibold`}>
+          Scheduler
         </Link>
       </li>
     </>
