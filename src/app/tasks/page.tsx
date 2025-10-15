@@ -51,7 +51,9 @@ const TasksPage = () => {
               key={step}
               className="bg-white text-left rounded-xl shadow-md p-6 hover:shadow-lg transition"
             >
-              <p className="text-blue-500 mb-5">{icon}</p>
+              <div className="w-[70px] h-[70px] flex items-center justify-center bg-gray-100 rounded-full mb-5">
+                <p className="text-blue-500 text-2xl">{icon}</p>
+              </div>
               <h4 className="text-2xl font-bold text-black mb-5">
                 Step-{step}
               </h4>
