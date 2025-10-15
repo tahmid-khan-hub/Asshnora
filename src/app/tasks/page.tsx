@@ -5,6 +5,7 @@ import { CiBookmarkPlus } from "react-icons/ci";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { FiArrowRight, FiPlus } from "react-icons/fi";
 import { IoMdAttach } from "react-icons/io";
+import { motion } from "framer-motion";
 
 const TasksPage = () => {
   const HowtoUseTask = [
@@ -47,9 +48,14 @@ const TasksPage = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {HowtoUseTask.map(({ step, title, desc, icon }) => (
-            <div
+            <motion.div
+              whileHover={{
+              scale: 1.03, 
+              boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.7)",
+              }}
+              transition={{ duration: 0 }}
               key={step}
-              className="bg-white text-left rounded-xl shadow-md p-6 hover:shadow-lg transition"
+              className="bg-white text-left rounded-xl shadow-md p-6 hover:shadow-lg transition relative z-50"
             >
               <div className="w-[70px] h-[70px] flex items-center justify-center bg-gray-100 rounded-full mb-5">
                 <p className="text-blue-500 text-2xl">{icon}</p>
@@ -59,7 +65,7 @@ const TasksPage = () => {
               </h4>
               <h3 className="text-xl font-semibold text-black mb-5">{title}</h3>
               <p className="text-gray-600">{desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
