@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { CiBookmarkPlus } from "react-icons/ci";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { FiArrowRight, FiPlus } from "react-icons/fi";
 import { IoMdAttach } from "react-icons/io";
 
 const TasksPage = () => {
@@ -62,12 +62,46 @@ const TasksPage = () => {
         </div>
 
         {/* Task Manager */}
-        <div className="mt-24">
-          <Link className="inline text-black border p-4 relative z-50" href="/tasks/taskManager">
-            Task Manager
-          </Link>
-        </div>
+        <div className="flex items-center justify-center mt-24">
+          <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg p-8 flex flex-col items-center">
+            {/* Upload Section */}
+            <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl w-full h-60 mb-6 hover:border-blue-400 transition">
+              <button
+                className="flex flex-col items-center text-gray-600 hover:text-blue-500"
+                title="Add photo or pdf"
+              >
+                <FiPlus size={32} />
+                <span className="mt-2 text-sm font-medium">
+                  Add photo or PDF
+                </span>
+              </button>
+            </div>
 
+            {/* Input Field with icons */}
+            <div className="relative w-full flex items-center">
+              <button
+                className="absolute left-3 text-gray-500 hover:text-black"
+                title="Attach file"
+              >
+                <FiPlus size={20} />
+              </button>
+
+              {/* Input */}
+              <input
+                type="text"
+                placeholder="Type your task..."
+                className="w-full border border-gray-500 text-black rounded-full py-3 pl-10 pr-10 focus:outline-none focus:ring-2 focus:ring-gray-300"
+              />
+
+              <button
+                className="absolute right-3 text-gray-600 hover:text-black"
+                title="Add Task"
+              >
+                <FiArrowRight size={22} />
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
