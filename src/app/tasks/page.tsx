@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -61,9 +62,11 @@ const TasksPage = () => {
         </div>
 
         {/* Task Manager */}
-        <Link className="btn" href={``}>
-        task
-        </Link>
+        <div className="mt-24">
+          <Link className="inline text-black border p-4 relative z-50" href="/tasks/taskManager">
+            Task Manager
+          </Link>
+        </div>
 
       </section>
     </div>
