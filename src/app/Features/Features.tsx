@@ -1,6 +1,8 @@
+"use client"
 import React from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 const Features = () => {
   return (
@@ -9,9 +11,9 @@ const Features = () => {
     <p className="text-center text-gray-600 mb-16 relative z-10">
       Explore powerful AI tools that simplify your workflow and keep you effortlessly organized every day.
     </p>
-    <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto gap-6 relative z-10">
+    <div className="flex flex-col md:flex-row max-w-[1000px] mx-auto gap-6">
       {/* Feature 1: To-Do / Tasks */}
-      <div className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between">
+      <motion.div whileHover={{scale: 1.03, boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.7)",}} transition={{ duration: 0.1 }} className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between relative z-10">
         <div className="w-[70px] h-[70px] flex items-center justify-center bg-gray-100 rounded-full mb-5">
           <p className="text-blue-500 text-2xl"><IoDocumentTextOutline size={40}/></p>
         </div>
@@ -26,10 +28,10 @@ const Features = () => {
         <button className="text-blue-500 font-semibold hover:underline">
           Try AI Task Manager →
         </button>
-      </div>
+      </motion.div>
 
       {/* Feature 2: Upcoming / Scheduler */}
-      <div className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between">
+      <motion.div whileHover={{scale: 1.03, boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.7)",}} transition={{ duration: 0.1 }} className="flex flex-col items-start bg-white shadow-md rounded-lg p-6 flex-1 justify-between relative z-10">
         <div className="w-[70px] h-[70px] flex items-center justify-center bg-gray-100 rounded-full mb-5">
           <p className="text-blue-500 text-2xl"><FaRegCalendarAlt size={36} /></p>
         </div>
@@ -45,7 +47,7 @@ const Features = () => {
         <button className="text-blue-500 font-semibold hover:underline">
           Connect & Start →
         </button>
-      </div>
+      </motion.div>
     </div></div>
   );
 };
