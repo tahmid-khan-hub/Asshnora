@@ -1,36 +1,36 @@
 "use client";
 import React from "react";
 import { AiOutlineMessage } from "react-icons/ai";
-import { CiBookmarkPlus } from "react-icons/ci";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { FiArrowRight, FiPlus } from "react-icons/fi";
 import { IoMdAttach } from "react-icons/io";
 import { motion } from "framer-motion";
+import { FaRobot } from "react-icons/fa";
 
 const TasksPage = () => {
   const HowtoUseTask = [
     {
       step: 1,
-      title: "Add a Task",
-      desc: "Click 'Add Task' to create a new to-do item.",
-      icon: <CiBookmarkPlus size={40} />,
-    },
-    {
-      step: 2,
-      title: "Attach Files",
-      desc: "Upload photos, PDFs or notes for better context.",
+      title: "Upload Files or Notes",
+      desc: "Start by uploading your photo, PDF or handwritten notes. These files help the AI agent understand your materials, whether they’re study notes, project outlines or schedules that need organizing.",
       icon: <IoMdAttach size={40} />,
     },
     {
-      step: 3,
-      title: "Ask AI",
-      desc: "Let AI organize, prioritize or suggest next actions.",
+      step: 2,
+      title: "Tell AI What You Need",
+      desc: "In the chat box, describe what you want the AI to do with your uploaded files. For example, you can say things like 'Create a weekly routine based on this PDF.' The AI agent will process your input intelligently.",
       icon: <AiOutlineMessage size={40} />,
     },
     {
+      step: 3,
+      title: "AI Organizes and Structures Your Work",
+      desc: "After understanding your instructions, the AI will automatically organize, categorize or even design your schedule. It structures everything logically, whether it’s turning notes into a plan or breaking big goals into smaller tasks.",
+      icon: <FaRobot size={40} />,
+    },
+    {
       step: 4,
-      title: "Track Progress",
-      desc: "Mark tasks as done and watch your progress grow.",
+      title: "Edit, Customize and Update",
+      desc: "You can freely edit or customize what the AI created. Want to adjust your schedule or add new items? Just tell the AI agent to 'update this and that,' and it will make the changes instantly for you.",
       icon: <FaRegCircleCheck size={40} />,
     },
   ];
