@@ -38,10 +38,10 @@ const TasksPage = () => {
     <div>
       {/* How to use it */}
       <section className="max-w-[1350px] mx-auto px-4 md:px-3 mb-16 text-center">
-        <h2 className="text-3xl font-bold mb-3 mt-11 text-black">
+        <h2 className="text-3xl font-bold mb-3 mt-11 text-black relative z-10">
           How to Use Smart Task Manager
         </h2>
-        <p className="text-gray-600 mb-16">
+        <p className="text-gray-600 mb-16 relative z-10">
           Follow these simple steps to get started with your AI-powered smart
           task manager
         </p>
