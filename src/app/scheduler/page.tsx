@@ -2,6 +2,7 @@
 import React from "react";
 import { FaEdit, FaGoogle, FaRobot, FaUnlockAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const SchedulerPage = () => {
   const HowToUseScheduler = [
@@ -63,6 +64,21 @@ const SchedulerPage = () => {
               <p className="text-gray-600">{desc}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* Connect your Google account */}
+        <div className="mt-16 bg-blue-50 rounded-xl p-8 shadow-md relative z-10">
+          <h3 className="text-2xl font-semibold text-blue-500 mb-6">
+            Get Started with Smart Scheduler
+          </h3>
+          <p className="text-gray-600 mb-5">
+            Before using the Smart Scheduler, please connect your Google account. This allows the AI to access your Google Calendar, Gmail and Classroom to deliver full scheduling and automation features.
+          </p>
+          <Link href="/login">
+            <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 mt-11 rounded-lg font-semibold mx-auto transition">
+              <FaGoogle /> Connect with Google
+            </button>
+          </Link>
         </div>
       </section>
     </div>
