@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <section className="text-center py-28 px-4 relative z-10">
       <h1 className="text-5xl md:text-6xl font-bold mb-4">
-        <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+        <span className="shiny-gradient bg-clip-text text-transparent">
           Smarter Planning Starts Here
         </span>
       </h1>
