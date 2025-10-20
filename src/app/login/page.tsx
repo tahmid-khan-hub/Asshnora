@@ -1,19 +1,33 @@
+"use client";
+import Link from "next/link";
 import React from "react";
+import { FaGoogle } from "react-icons/fa6";
 
 const LoginPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="card w-full max-w-sm shrink-0 shadow-2xl text-black mx-auto">
-        <div className="card-body">
-          <h2 className="text-center font-semibold text-3xl mb-7 mt-5">Login Now!</h2>
-          <fieldset className="fieldset">
-            <input type="email" className="border font-semibold text-[14px] p-3 rounded-md mb-3" placeholder="Email" />
-            <input type="password" className="border font-semibold text-[14px] p-3 rounded-md" placeholder="Password" />
-            <div>
-              <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button className="btn btn-neutral mt-11">Login</button>
-          </fieldset>
+    <div className="min-h-screen flex items-center justify-center px-4 relative z-10">
+      <div className="p-8">
+        <div className="bg-white rounded-2xl shadow-lg p-10 max-w-md w-full text-center">
+          <h2 className="text-3xl font-semibold text-blue-700 mb-8">
+            Sign in to Continue
+          </h2>
+
+          <button
+            onClick={() => alert("Google Sign-In logic here")}
+            className="flex items-center justify-center gap-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+          >
+            <FaGoogle className="text-lg" />
+            Continue with Google
+          </button>
+
+          <div className="mt-8">
+            <Link
+              href="/"
+              className="text-blue-600 hover:underline text-sm font-medium"
+            >
+              ← Back to Home
+            </Link>
+          </div>
         </div>
       </div>
     </div>
