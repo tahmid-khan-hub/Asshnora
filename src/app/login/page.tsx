@@ -4,12 +4,16 @@ import Lottie from "lottie-react";
 import loginLottie from "./login.json"
 import React from "react";
 import { FaGoogle } from "react-icons/fa6";
+import useAOS from "@/hooks/UseAos";
 
 const LoginPage = () => {
+
+  useAOS();
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 relative z-10">
       <div className="p-8">
-        <div className="bg-white rounded-2xl shadow-lg p-10 max-w-md w-full text-center">
+        <div data-aos="fade-up" className="bg-white rounded-2xl shadow-lg p-10 max-w-md w-full text-center">
 
           {/* Lottie Animation */}
           <div className="w-40 mx-auto mb-4">
