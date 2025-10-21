@@ -20,9 +20,11 @@ const LoginPage = () => {
             <Lottie animationData={loginLottie} loop={true} />
           </div>
 
-          <h2 className="text-3xl font-semibold text-blue-500 mb-8">
+          <h2 className="text-3xl font-semibold text-black mb-3">
             Sign in to Continue
           </h2>
+
+          <p className="text-gray-600 mb-11">Welcome back! Let’s connect your Google account and make your planning effortless.</p>
 
           <button
             onClick={() => alert("Google Sign-In logic here")}
