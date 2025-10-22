@@ -1,5 +1,5 @@
 "use client";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -68,7 +68,7 @@ export default function Navbar() {
         <div className="navbar-end">
           <ul className="hidden lg:flex gap-5 text-black">{links}</ul>
 
-          {session ? <button className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Log out</button> : <button className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Login</button>}
+          {session ? <button onClick={() => signOut()} className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Log out</button> : <Link href={"/login"}><button className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Login</button></Link>}
 
           {/* Mobile menu */}
           <div className="lg:hidden relative -mr-1 " ref={menuRef}>
