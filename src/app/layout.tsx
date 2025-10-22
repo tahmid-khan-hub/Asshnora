@@ -3,7 +3,7 @@ import { Inter, Passero_One } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { SessionProvider } from "next-auth/react";
+import Providers from "./Providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${passero.variable} antialiased inter`}>
-        <SessionProvider><div className="min-h-screen w-full bg-[#f5f5dc] relative">
+        <Providers><div className="min-h-screen w-full bg-[#f5f5dc] relative">
           {/*  Warm Beige Texture  */}
           <div
             className="absolute inset-0 z-0"
@@ -45,7 +45,7 @@ export default function RootLayout({
             {children}
             <Footer></Footer>
           </main>
-        </div></SessionProvider>
+        </div></Providers>
       </body>
     </html>
   );
