@@ -100,7 +100,7 @@ export default function Navbar() {
                 <ul
                   tabIndex={0}
                   className="absolute right-0 mt-3 w-60 p-4 rounded-2xl shadow-lg
-                 bg-white/30 backdrop-blur-xl border border-white/20
+                 bg-white border border-white/20
                   flex flex-col gap-4 z-50 text-black"
                 >
                   {Menulinks}
