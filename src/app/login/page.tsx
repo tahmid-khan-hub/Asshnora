@@ -5,6 +5,7 @@ import loginLottie from "./login.json"
 import React from "react";
 import { FaGoogle } from "react-icons/fa6";
 import useAOS from "@/hooks/UseAos";
+import { signIn } from "next-auth/react";
 
 const LoginPage = () => {
 
@@ -27,7 +28,7 @@ const LoginPage = () => {
           <p className="text-gray-600 mb-11">Welcome back! Let’s connect your Google account and make your planning effortless.</p>
 
           <button
-            onClick={() => alert("Google Sign-In logic here")}
+            onClick={() => signIn("google")}
             className="flex items-center justify-center gap-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
           >
             <FaGoogle className="text-lg" />
