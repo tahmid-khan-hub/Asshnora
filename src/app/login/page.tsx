@@ -28,7 +28,7 @@ const LoginPage = () => {
           <p className="text-gray-600 mb-11">Welcome back! Let’s connect your Google account and make your planning effortless.</p>
 
           <button
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", { callbackUrl: "/scheduler" })}
             className="flex items-center justify-center gap-3 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
           >
             <FaGoogle className="text-lg" />
