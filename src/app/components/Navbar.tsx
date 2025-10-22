@@ -50,11 +50,6 @@ export default function Navbar() {
           Schedule
         </Link>
       </li>
-      <li>
-        <Link href={"/login"} className={`font-semibold`}>
-          Login
-        </Link>
-      </li>
     </>
   );
 
@@ -73,7 +68,7 @@ export default function Navbar() {
         <div className="navbar-end">
           <ul className="hidden lg:flex gap-5 text-black">{links}</ul>
 
-          {session ? <button className="btn hidden lg:block ml-3">Log out</button> : <button className="btn hidden lg:block ml-3">Login</button>}
+          {session ? <button className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Log out</button> : <button className="btn mr-2 md:mr-1 lg:mr-0.5 ml-3">Login</button>}
 
           {/* Mobile menu */}
           <div className="lg:hidden relative -mr-1 " ref={menuRef}>
