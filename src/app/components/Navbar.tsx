@@ -38,20 +38,6 @@ export default function Navbar() {
     </>
   );
 
-  const Menulinks = (
-    <>
-      <li>
-        <Link href={"/tasks"} className={`font-semibold`}>
-          Tasks
-        </Link>
-      </li>
-      <li>
-        <Link href={"/schedule"} className={`font-semibold`}>
-          Schedule
-        </Link>
-      </li>
-    </>
-  );
 
   return (
     <div className="navbar sticky top-0 z-[60] bg-background/55 backdrop-blur-md text-white">
@@ -103,7 +89,7 @@ export default function Navbar() {
                  bg-white border border-white/20
                   flex flex-col gap-4 z-50 text-black"
                 >
-                  {Menulinks}
+                  {links}
                 </ul>
               </>
             )}
