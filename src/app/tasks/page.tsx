@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { FiArrowRight, FiPlus } from "react-icons/fi";
@@ -34,12 +34,89 @@ const TasksPage = () => {
       icon: <FaRegCircleCheck size={40} />,
     },
   ];
+
+  const [message, setMessage] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [chat, setChat] = useState<{ sender: "user" | "ai"; text: string }[]>(
+    []
+  );
+  const [loading, setLoading] = useState(false);
+
+  // Handle file upload
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleSend = async () => {
+    if (!message && !file) return;
+
+    // Add user  message to chat
+    setChat((prev) => [...prev, { sender: "user", text: message }]);
+
+    setLoading(true);
+
+    try {
+      // If file uploaded then convert it to base64
+      if (file) {
+        const reader = new FileReader();
+        const fileBase64: string = await new Promise((resolve, reject) => {
+          reader.onload = () =>
+            resolve(reader.result?.toString().split(",")[1] || "");
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+        const fileData = fileBase64;
+        const fileType = file.type;
+
+        // Backend API
+        const res = await fetch("/api/ai", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message,
+            fileData,
+            fileType,
+          }),
+        });
+
+        const data = await res.json();
+
+        // Reply
+        if (data.reply) {
+          setChat((prev) => [...prev, { sender: "ai", text: data.reply }]);
+        } else {
+          setChat((prev) => [
+            ...prev,
+            { sender: "ai", text: "Sorry, I couldn’t process that." },
+          ]);
+        }
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+      setChat((prev) => [
+        ...prev,
+        { sender: "ai", text: "Error connecting to AI." },
+      ]);
+    }
+
+    // Reset input & loading
+    setLoading(false);
+    setMessage("");
+    setFile(null);
+  };
+
   return (
     <div>
       {/* How to use it */}
       <section className="max-w-[1350px] mx-auto px-4 md:px-3 mb-16 text-center">
         <h2 className="text-3xl font-bold mb-3 mt-11 text-black relative z-10">
-          How to start <span className="shiny-gradient bg-clip-text text-transparent">Smart Task Manager</span>
+          How to start{" "}
+          <span className="shiny-gradient bg-clip-text text-transparent">
+            Smart Task Manager
+          </span>
         </h2>
         <p className="text-gray-600 mb-16 relative z-10">
           Follow these simple steps to get started with your AI-powered smart
@@ -50,8 +127,8 @@ const TasksPage = () => {
           {HowtoUseTask.map(({ step, title, desc, icon }) => (
             <motion.div
               whileHover={{
-              scale: 1.03, 
-              boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.7)",
+                scale: 1.03,
+                boxShadow: "0px 0px 20px rgba(0, 123, 255, 0.7)",
               }}
               transition={{ duration: 0 }}
               key={step}
@@ -71,39 +148,54 @@ const TasksPage = () => {
 
         {/* Task Manager */}
         <div className="flex items-center justify-center mt-24">
-          <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg p-8 flex flex-col items-center">
-            {/* Upload Section */}
-            <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-xl w-full h-60 mb-6 hover:border-blue-400 transition">
-              <button
-                className="flex flex-col items-center text-gray-600 hover:text-blue-500"
-                title="Add photo or pdf"
-              >
-                <FiPlus size={32} />
-                <span className="mt-2 text-sm font-medium">
-                  Add photo or PDF
-                </span>
-              </button>
+          <div className="bg-white w-full max-w-3xl rounded-xl shadow-lg p-8 flex flex-col">
+            {/* Chat Box */}
+            <div className="h-96 overflow-y-auto border border-gray-200 rounded-lg p-4 mb-6">
+              {chat.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`my-2 flex ${
+                    msg.sender === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`px-4 py-2 rounded-2xl max-w-[80%] ${
+                      msg.sender === "user"
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 text-black"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
+                </div>
+              ))}
+              {loading && (
+                <p className="text-gray-500 text-sm mt-2">AI thinking...</p>
+              )}
             </div>
 
-            {/* Input Field with icons */}
-            <div className="relative w-full flex items-center">
-              <button
-                className="absolute left-3 text-gray-500 hover:text-black"
-                title="Attach file"
-              >
-                <FiPlus size={20} />
-              </button>
+            {/* Upload File */}
+            <input
+              type="file"
+              accept="image/*,.pdf"
+              onChange={handleFileChange}
+              className="mb-4"
+            />
 
-              {/* Input */}
+            {/* Input Field */}
+            <div className="relative w-full flex items-center">
               <input
                 type="text"
-                placeholder="Type your task..."
-                className="w-full border border-gray-500 text-black rounded-full py-3 pl-10 pr-10 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                placeholder="Type your task or instruction..."
+                className="w-full border border-gray-500 text-black rounded-full py-3 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
-
               <button
+                onClick={handleSend}
+                disabled={loading}
                 className="absolute right-3 text-gray-600 hover:text-black"
-                title="Add Task"
+                title="Send Message"
               >
                 <FiArrowRight size={22} />
               </button>
