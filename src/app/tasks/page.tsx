@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaRegCircleCheck } from "react-icons/fa6";
-import { FiArrowRight, FiPlus } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { IoMdAttach } from "react-icons/io";
 import { motion } from "framer-motion";
 import { FaRobot } from "react-icons/fa";
@@ -52,60 +52,81 @@ const TasksPage = () => {
   const handleSend = async () => {
     if (!message && !file) return;
 
-    // Add user  message to chat
+    // show user message 
     setChat((prev) => [...prev, { sender: "user", text: message }]);
-
     setLoading(true);
 
     try {
-      // If file uploaded then convert it to base64
+      // payload
+      let fileData: string | null = null;
+      let fileType: string | null = null;
+
       if (file) {
-        const reader = new FileReader();
-        const fileBase64: string = await new Promise((resolve, reject) => {
+        // convert file to base64
+        const fileBase64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
           reader.onload = () =>
             resolve(reader.result?.toString().split(",")[1] || "");
           reader.onerror = reject;
           reader.readAsDataURL(file);
         });
+        fileData = fileBase64;
+        fileType = file.type;
+      }
 
-        const fileData = fileBase64;
-        const fileType = file.type;
+      // debug
+      console.log("Sending to /api/gemini:", {
+        message,
+        hasFile: !!file,
+        fileType,
+      });
 
-        // Backend API
-        const res = await fetch("/api/ai", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            message,
-            fileData,
-            fileType,
-          }),
-        });
+      // Backend api
+      const res = await fetch("/api/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message,
+          fileData,
+          fileType, 
+        }),
+      });
 
+      // read error body
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        console.error("Server error response:", res.status, errBody);
+        setChat((prev) => [
+          ...prev,
+          { sender: "ai", text: "Server error: failed to get AI response." },
+        ]);
+      } else {
         const data = await res.json();
-
-        // Reply
-        if (data.reply) {
+        if (data && data.reply) {
           setChat((prev) => [...prev, { sender: "ai", text: data.reply }]);
+        } else if (data && data.error) {
+          setChat((prev) => [
+            ...prev,
+            { sender: "ai", text: `AI error: ${data.error}` },
+          ]);
         } else {
           setChat((prev) => [
             ...prev,
-            { sender: "ai", text: "Sorry, I couldn’t process that." },
+            { sender: "ai", text: "Sorry, couldn't process that." },
           ]);
         }
       }
-    } catch (error) {
-      console.log("Error: ", error);
+    } catch (err) {
+      console.error("Network error:", err);
       setChat((prev) => [
         ...prev,
-        { sender: "ai", text: "Error connecting to AI." },
+        { sender: "ai", text: "Network error: could not contact AI." },
       ]);
+    } finally {
+      setLoading(false);
+      setMessage("");
+      setFile(null);
     }
-
-    // Reset input & loading
-    setLoading(false);
-    setMessage("");
-    setFile(null);
   };
 
   return (
